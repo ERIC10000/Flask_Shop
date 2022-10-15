@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+
+        <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+
+    <style>
+        img:hover{
+        transform: scale(1.2);
+        }
+    </style>
+
+
+
+
+<!-- JavaScript Bundle with Popper -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <div class="container-fluid bg-secondary">
+        <div class="row card shadow p-5 m-3">
+            <div class="MultiCarousel" data-items="1,3,5,6" data-slide="3" id="MultiCarousel"  data-interval="1000">
+                <h4 class="lead sticky-top">Featured Products</h4>
+                <div class="MultiCarousel-inner">
+
+
+
+
+                    {% for deal in deals%}
+
+                    <div class="item">
+
+
+                        <div class="pad15">
+                            <img src="../static/images/{{deal[7]}}" alt="" class="img-fluid" style="border-radius:25px;">
+
+
+                            <p>₹ 1</p>
+                            <p>₹ 6000</p>
+                            <p>50% off</p>
+
+                            <a href="/single/{{deal[0]}}" class="btn btn-primary btn-sm">Add to Cart</a>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+
+                </div>
+
+                <button class="btn btn-primary leftLst"><</button>
+                <button class="btn btn-primary rightLst">></button>
+            </div>
+        </div>
+
+
+
+<!--        slider-->
+
+<!--        end slider-->
+
+
+                <div class="row card shadow p-5 m-3">
+                <div class="MultiCarousel" data-items="1,3,5,6" data-slide="3" id="MultiCarousels"  data-interval="1000">
+                <h4 class="lead">Deals of the Day</h4>
+                <div class="MultiCarousel-inner">
+
+
+
+                    {% for peak in peaks%}
+
+                    <div class="item">
+
+
+                        <div class="pad15">
+                            <img src="../static/images/{{peak[7]}}" alt="" class="img-fluid" style="border-radius:25px;">
+
+
+                            <p>₹ 1</p>
+                            <p>₹ 6000</p>
+                            <p>50% off</p>
+
+                            <a href="/single/{{peak[0]}}" class="btn btn-primary btn-sm">Add to Cart</a>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+
+                </div>
+
+                <button class="btn btn-primary leftLst"><</button>
+                <button class="btn btn-primary rightLst">></button>
+            </div>
+        </div>
+
+
+         <div class="row card shadow p-5 m-3">
+            <div class="MultiCarousel" data-items="1,3,5,6" data-slide="3" id="MultiCarousel"  data-interval="1000">
+                <h4 class="lead sticky-top">Fruits of the Day</h4>
+                <div class="MultiCarousel-inner">
+
+
+
+
+                    {% for deal in deals%}
+
+                    <div class="item">
+
+
+                        <div class="pad15">
+                            <img src="../static/images/{{deal[7]}}" alt="" class="img-fluid" style="border-radius:25px;">
+
+
+                            <p>₹ 1</p>
+                            <p>₹ 6000</p>
+                            <p>50% off</p>
+
+                            <a href="/single/{{deal[0]}}" class="btn btn-primary btn-sm">Add to Cart</a>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+
+                </div>
+
+                <button class="btn btn-primary leftLst"><</button>
+                <button class="btn btn-primary rightLst">></button>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
+
+</body>
+</html>
