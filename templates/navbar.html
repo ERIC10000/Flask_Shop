@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Navbar</title>
+
+    script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <style>
+
+    * {
+	 box-sizing: border-box;
+	 font-family: arial, helvetica, sans serif;
+	 color: #fff;
+}
+ .navbar {
+	 text-align: right;
+	 background: #1f568c;
+	 position: relative;
+}
+ .navbar .navlinks {
+	 display: inline-block;
+	 padding: 0;
+	 margin: 0;
+	 z-index: 10;
+}
+ .navbar .navlinks li {
+	 display: inline-block;
+}
+ .navbar .navlinks li a {
+	 display: block;
+	 text-decoration: none;
+	 padding: 1.3rem;
+}
+ .navbar .navlinks li:hover {
+	 background: rgba(255, 255, 255, .2);
+	 transition: all 0.1s linear;
+}
+ .navbar i {
+	 padding: 0 1.3rem;
+	 font-size: 2.2rem;
+	 vertical-align: middle;
+	 cursor: pointer;
+}
+ .navbar #searchBox {
+	 visibility: hidden;
+	 position: absolute;
+	 top: 0;
+	 padding: 0.65rem;
+	 right: 4.8rem;
+	 background: #1f568c;
+	 width: 350px;
+	 transition: visibility 0s linear 0.2s, opacity 0.2s linear;
+	 opacity: 0;
+}
+ .navbar #searchBox.open-search {
+	 visibility: visible;
+	 opacity: 1;
+	 transition-delay: 0s;
+}
+ .navbar #searchBox input[type=search] {
+	 font-size: 1.2rem;
+	 padding: 0.5rem;
+	 background: transparent;
+	 border: 0;
+	 border-bottom: 1px solid #fff;
+	 width: 100%;
+}
+ .navbar #searchBox input[type=search]:focus {
+	 outline-width: 0;
+}
+ .navbar #searchIcon {
+	 transition: all 0.2s ease-in-out;
+}
+ .navbar #searchIcon:after {
+	 content: "search";
+}
+ .navbar #searchIcon.close-search:after {
+	 content: "highlight_off";
+}
+ .navbar #mainLogo {
+	 position: absolute;
+	 left: 15px;
+	 font-size: 2rem;
+}
+
+
+    </style>
+
+
+</head>
+<body>
+
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<nav class="navbar">
+  <div id="mainLogo">
+    <img src="http://fakeimg.pl/150x60/?text=LOGO">
+  </div>
+  <ul class="navlinks">
+    <li>
+      <a href="#">Blah</a>
+    </li>
+    <li>
+      <a href="#">Blah</a>
+    </li>
+    <li>
+      <a href="#">Blah</a>
+    </li>
+    <li>
+      <a href="#">Blah</a>
+    </li>
+  </ul>
+  <i id="searchIcon" class="material-icons"></i>
+  <div id="searchBox">
+    <input type="search" placeholder="Search For..." />
+  </div>
+</nav>
+
+
+<script>
+    $("#searchIcon").click(function () {
+  $("#searchBox").toggleClass("open-search");
+  $("#searchIcon").toggleClass("close-search");
+});
+
+
+</script>
+</body>
+</html>

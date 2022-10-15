@@ -7,12 +7,12 @@ import pymysql
 connection = pymysql.connect(host='localhost', user='root',password='',
                                  database='Flask_Shop')
 
-@app.route('/ff')
-def si():
-    return render_template('shopping_cart.html')
-
-
 @app.route('/')
+def si():
+    return render_template('navbar.html')
+
+
+@app.route('/ff')
 def home():
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM products")
