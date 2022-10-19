@@ -9,6 +9,11 @@ connection = pymysql.connect(host='localhost', user='root', password='',
                              database='Flask_Shop')
 
 
+@app.route('/products')
+def products():
+    return render_template('products.html')
+
+
 @app.route('/')
 def home():
     if 'key' in session:
@@ -80,6 +85,9 @@ def login():
         sql = "select * from users where user_email=%s and user_password=%s"
         cursor.execute(sql, (user_email, user_password))
         row = cursor.fetchone()
+        print(row)
+        session['user_email'] = row[2]
+        session['user_name'] = row[1]
 
 
         if cursor.rowcount == 0:
@@ -87,7 +95,6 @@ def login():
 
         elif cursor.rowcount == 1:
             session['key'] = row[1]
-            print(session['key'])
             return redirect('/')
 
 

@@ -42,17 +42,11 @@
 
     <div class="container-fluid bg-secondary">
         <div class="row card shadow p-5 m-3">
-            <div class="MultiCarousel" data-items="1,3,5,6" data-slide="3" id="MultiCarousel"  data-interval="1000">
-
-<!--                     <b>-->
-<!--                                                    {% if 'user_id' in session %}-->
-<!--                                                          {{ session['fname']}} : {{session['role']   }}-->
-<!--                                                    {% endif %}-->
-<!--                                                </b>-->
+            <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel"  data-interval="1000">
 
                 <b>
 
-                    <h3 class="text-center">Welcome {{session['key']}}</h3>
+                    <h3 class="text-center">Welcome {{session['user_name']}} : {{session['user_email']}}</h3>
 
                 </b>
                 <h4 class="lead sticky-top">Featured Products</h4> <span style="float:right;"><a href="/logout" class="btn btn-danger" onclick="logout()">Logout</a></span>
