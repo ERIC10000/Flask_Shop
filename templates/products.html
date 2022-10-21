@@ -7,11 +7,151 @@
     <title>Document</title>
 
     <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
 
 
     <link rel="stylesheet" href="{{url_for('static', filename='css/products.css')}}">
     <script src="products.js"></script>
+
+    <style>
+
+        @import url('https://fonts.googleapis.com/css?family=Inconsolata:700');
+ * {
+	 margin: 0;
+	 padding: 0;
+	 box-sizing: border-box;
+}
+ html, body {
+	 width: 100%;
+	 height: 100%;
+}
+ body {
+	 background: #252525;
+}
+ .container1 {
+	 position: absolute;
+	 margin: auto;
+	 top: 0;
+	 left: 0;
+	 right: 0;
+	 bottom: 0;
+	 width: 300px;
+	 height: 100px;
+}
+ .container1 .search {
+	 position: absolute;
+	 margin: auto;
+	 top: 0;
+	 right: 0;
+	 bottom: 0;
+	 left: 0;
+	 width: 80px;
+	 height: 80px;
+	 background: crimson;
+	 border-radius: 50%;
+	 transition: all 1s;
+	 z-index: 4;
+	 box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
+}
+ .container1 .search:hover {
+	 cursor: pointer;
+}
+ .container1 .search::before {
+	 content: "";
+	 position: absolute;
+	 margin: auto;
+	 top: 22px;
+	 right: 0;
+	 bottom: 0;
+	 left: 22px;
+	 width: 12px;
+	 height: 2px;
+	 background: white;
+	 transform: rotate(45deg);
+	 transition: all 0.5s;
+}
+ .container1 .search::after {
+	 content: "";
+	 position: absolute;
+	 margin: auto;
+	 top: -5px;
+	 right: 0;
+	 bottom: 0;
+	 left: -5px;
+	 width: 25px;
+	 height: 25px;
+	 border-radius: 50%;
+	 border: 2px solid white;
+	 transition: all 0.5s;
+}
+ .container1 input {
+	 font-family: 'Inconsolata', monospace;
+	 position: absolute;
+	 margin: auto;
+	 top: 0;
+	 right: 0;
+	 bottom: 0;
+	 left: 0;
+	 width: 50px;
+	 height: 50px;
+	 outline: none;
+	 border: none;
+	 background: crimson;
+	 color: white;
+	 text-shadow: 0 0 10px crimson;
+	 padding: 0 80px 0 20px;
+	 border-radius: 30px;
+	 box-shadow: 0 0 25px 0 crimson, 0 20px 25px 0 rgba(0, 0, 0, 0.2);
+	 transition: all 1s;
+	 opacity: 0;
+	 z-index: 5;
+	 font-weight: bolder;
+	 letter-spacing: 0.2em;
+}
+ .container1 input:hover {
+	 cursor: pointer;
+}
+ .container1 input:focus {
+	 width: 300px;
+	 opacity: 1;
+	 cursor: text;
+}
+ .container1 input:focus ~ .search {
+	 right: -250px;
+	 background: #151515;
+	 z-index: 6;
+}
+ .container1 input:focus ~ .search::before {
+	 top: 0;
+	 left: 0;
+	 width: 25px;
+}
+ .container1 input:focus ~ .search::after {
+	 top: 0;
+	 left: 0;
+	 width: 25px;
+	 height: 2px;
+	 border: none;
+	 background: white;
+	 border-radius: 0%;
+	 transform: rotate(-45deg);
+}
+ .container1 input::placeholder {
+	 color: white;
+	 opacity: 0.5;
+	 font-weight: bolder;
+}
+
+#top{
+margin-bottom:800px;
+margin-left:900px;
+
+}
+
+
+
+    </style>
 
 
 
@@ -20,12 +160,27 @@
 </head>
 <body>
 
+        <!--        search-->
+        <div class="container1" id="top">
+  <input type="text" placeholder="What are you looking for!!!">
+  <div class="search"></div>
+</div>
+
+
+<!--        end search-->
+
+
+
 
     <div class="container">
 
-        <h1 class="heading">Image Gallery with CSS Grid <span>& Flexbox Fallback</span></h1>
+        <h1 class="heading text-info">Jambo Shop Online Store <span>Welocome!</span></h1>
 
-        <div class="gallery">
+
+
+
+
+        <div class="gallery card shadow bg-secondary p-5">
 
             <div class="gallery-item">
                 <img class="gallery-image" src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=500&h=500&fit=crop" alt="person writing in a notebook beside by an iPad, laptop, printed photos, spectacles, and a cup of coffee on a saucer">
@@ -51,9 +206,9 @@
 
 <!--            with cards-->
 
-            <div class="card shadow">
+            <div class="card shadow" style="border-radius:10px;">
             <div class="gallery-item">
-                <img class="gallery-image" src="https://images.unsplash.com/photo-1486334803289-1623f249dd1e?w=500&h=500&fit=crop" alt="man wearing a black jacket, white shirt, blue jeans, and brown boots, playing a white electric guitar while sitting on an amp">
+                <img class="gallery-image" src="https://images.unsplash.com/photo-1486334803289-1623f249dd1e?w=500&h=500&fit=crop" alt="man wearing a black jacket, white shirt, blue jeans, and brown boots, playing a white electric guitar while sitting on an amp" style="border-radius:10px;">
             </div>
 
             <div class="card-body text-center">
