@@ -9,9 +9,9 @@ connection = pymysql.connect(host='localhost', user='root', password='',
                              database='Flask_Shop')
 
 
-@app.route('/products')
-def products():
-    return render_template('products.html')
+# @app.route('/products')
+# def products():
+#     return render_template('single.html', row=row)
 
 
 @app.route('/')
@@ -52,7 +52,7 @@ def single(product_id):
     session['image_url'] = row[7]
 
     # after getting the row forward it to single.html for users to access it
-    return render_template('cart1.html', row=row)
+    return render_template('single.html', row=row)
 
 
 @app.route('/signup', methods=['POST', 'GET'])
@@ -84,16 +84,17 @@ def login():
 
         sql = "select * from users where user_email=%s and user_password=%s"
         cursor.execute(sql, (user_email, user_password))
-        row = cursor.fetchone()
-        print(row)
-        session['user_email'] = row[2]
-        session['user_name'] = row[1]
+
 
 
         if cursor.rowcount == 0:
             return render_template('login_signup.html', message="Invalid Credentials")
 
         elif cursor.rowcount == 1:
+            row = cursor.fetchone()
+            print(row)
+            session['user_email'] = row[2]
+            session['user_name'] = row[1]
             session['key'] = row[1]
             return redirect('/')
 
@@ -113,6 +114,65 @@ def login():
 def logout():
     session.clear()
     return redirect('/login')
+
+
+# modcom.co.ke/sql/payment
+import requests
+import datetime
+import base64
+from requests.auth import HTTPBasicAuth
+
+@app.route('/payment', methods=['POST', 'GET'])
+def mpesa_payment():
+    if request.method == 'POST':
+        phone = str(request.form['phone'])
+        amount = str(request.form['amount'])
+        # GENERATING THE ACCESS TOKEN
+        consumer_key = "GTWADFxIpUfDoNikNGqq1C3023evM6UH"
+        consumer_secret = "amFbAoUByPV2rM5A"
+
+        api_URL = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"  # AUTH URL
+        r = requests.get(api_URL, auth=HTTPBasicAuth(consumer_key, consumer_secret))
+
+        data = r.json()
+        access_token = "Bearer" + ' ' + data['access_token']
+
+        #  GETTING THE PASSWORD
+        timestamp = datetime.datetime.today().strftime('%Y%m%d%H%M%S')
+        passkey = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'
+        business_short_code = "174379"
+        data = business_short_code + passkey + timestamp
+        encoded = base64.b64encode(data.encode())
+        password = encoded.decode('utf-8')
+
+        # BODY OR PAYLOAD
+        payload = {
+            "BusinessShortCode": "174379",
+            "Password": "{}".format(password),
+            "Timestamp": "{}".format(timestamp),
+            "TransactionType": "CustomerPayBillOnline",
+            "Amount": "10",  # use 1 when testing
+            "PartyA": phone,  # change to your number
+            "PartyB": "174379",
+            "PhoneNumber": phone,
+            "CallBackURL": "https://modcom.co.ke/job/confirmation.php",
+            "AccountReference": "Modcom",
+            "TransactionDesc": "Modcom"
+        }
+
+        # POPULAING THE HTTP HEADER
+        headers = {
+            "Authorization": access_token,
+            "Content-Type": "application/json"
+        }
+
+        url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"  # C2B URL
+
+        response = requests.post(url, json=payload, headers=headers)
+        print(response.text)
+        return render_template('mpesa_payment.html', msg='Please Complete Payment in Your Phone')
+    else:
+        return render_template('mpesa_payment.html')
 
 
 @app.route('/addcart')
